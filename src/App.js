@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import './App.css';
-import Game from './components/Game';
+import "./App.css";
+import Game from "./components/game/Game";
 
 function App() {
   return (
-    <Game />
+    <>
+      <Game />
+    </>
   );
 }
 
