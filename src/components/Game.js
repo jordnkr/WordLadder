@@ -5,6 +5,7 @@ import classes from "./Game.module.css";
 
 const Game = () => {
   const [resetToggle, setResetToggle] = useState(true);
+  const [win, setWin] = useState(false);
   const [inputChars, setInputChars] = useState([]);
   const [maxInputs, setMaxInputs] = useState(false);
   const [enteredWords, setEnteredWords] = useState([]);
@@ -51,17 +52,32 @@ const Game = () => {
 
   const enterHandler = () => {
     const newWord = inputChars.join("").toLowerCase();
+
     // IF NEW WORD IN WORD LIST, AND ALSO IS ONLY 1 CHAR OFF PREV-WORD
     if (validWord(newWord) && charDifference(newWord, currentWord) <= 1) {
-      setInputChars([]);
-      setMaxInputs(false);
-      setCurrentWord(newWord);
       setEnteredWords((prevWords) => {
         const newWords = [...prevWords];
         newWords.push(newWord);
         return newWords;
       });
+
+      if (charDifference(newWord, startingWords.lastWord) <= 1) {
+        setWin(true);
+      } else {
+        setInputChars([]);
+        setMaxInputs(false);
+        setCurrentWord(newWord);
+      }
     }
+  };
+
+  const resetHandler = (event) => {
+    setWin(false);
+    setResetToggle((prevState) => !prevState);
+    setInputChars([]);
+    setEnteredWords([]);
+    setMaxInputs(false);
+    event.target.blur();
   };
 
   const handleKeyDown = (e) => {
@@ -69,8 +85,7 @@ const Game = () => {
     if (
       ((e.keyCode >= 65 && e.keyCode <= 90) ||
         (e.keyCode >= 97 && e.keyCode <= 122)) &&
-      !maxInputs &&
-      enteredWords.length < 4
+      !maxInputs
     ) {
       alphabetHandler(e);
     } else if (e.keyCode == 8) {
@@ -81,8 +96,9 @@ const Game = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-
+    if (!win) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
@@ -101,14 +117,6 @@ const Game = () => {
     });
   }, [resetToggle]);
 
-  const resetHandler = (event) => {
-    setResetToggle((prevState) => !prevState);
-    setInputChars([]);
-    setEnteredWords([]);
-    setMaxInputs(false);
-    event.target.blur();
-  };
-
   return (
     <>
       <div className={classes.section}>
@@ -125,9 +133,9 @@ const Game = () => {
           <span>{`${word} `}</span>
         ))}
       </div>
-      <button id="cars" onClick={resetHandler}>
-        Reset
-      </button>
+      {!win && <button onClick={resetHandler}>Reset</button>}
+      {win && <button onClick={resetHandler}>Play Again</button>}
+      {win && <p>You win!</p>}
     </>
   );
 };
