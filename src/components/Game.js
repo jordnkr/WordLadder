@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 
 import { generate, randomWord } from "../word-ladder/wordladder.js";
+import classes from "./Game.module.css";
 
 const Game = () => {
+  const [resetToggle, setResetToggle] = useState(true);
   const [inputChars, setInputChars] = useState([]);
+  const [startingWords, setStartingWords] = useState([]);
   const [words, setWords] = useState([]);
   const [maxInputs, setMaxInputs] = useState(false);
 
-  const handleKeyDown = e => {
+  const handleKeyDown = (e) => {
     console.log(e);
     if (
+      // if alphabet key
       ((e.keyCode >= 65 && e.keyCode <= 90) ||
         (e.keyCode >= 97 && e.keyCode <= 122)) &&
       !maxInputs
@@ -19,7 +23,7 @@ const Game = () => {
       }
       setInputChars((prevChars) => {
         const newChars = [...prevChars];
-        newChars.push(e.key);
+        newChars.push(e.key.toUpperCase());
         return newChars;
       });
     } else if (e.keyCode == 8) {
@@ -34,7 +38,8 @@ const Game = () => {
         }
       }
     } else if (e.keyCode == 13 && maxInputs) {
-      const newWord = inputChars.join('');
+      // if ENTER and 4 chars
+      const newWord = inputChars.join("");
       // IF NEW WORD IN WORD LIST, AND ALSO IS ONLY 1 CHAR OFF PREV-WORD, DO FOLLOWING CODE
       setInputChars([]);
       setMaxInputs(false);
@@ -42,30 +47,53 @@ const Game = () => {
         const newWords = [...prevWords];
         newWords.push(newWord);
         return newWords;
-      })
+      });
     }
-  }
+  };
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
+    if (words.length < 6) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
 
-    return function cleanup() {
+    return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [inputChars]);
+  }, [inputChars, words]);
+
+  useEffect(() => {
+    const randWord = randomWord();
+    setStartingWords(generate(randWord));
+  }, [resetToggle]);
+
+  const resetHandler = (event) => {
+    setResetToggle((prevState) => !prevState);
+    setInputChars([]);
+    setStartingWords([]);
+    setWords([]);
+    setMaxInputs(false);
+    event.target.blur();
+  };
 
   return (
     <>
-      <div>
+      <div className={classes.section}>
+        <span>Starting Words: </span>
+        {startingWords.map((word) => (
+          word + " "
+        ))}
+      </div>
+      <div className={classes.section}>
         {inputChars.map((char) => (
           <span>{char}</span>
         ))}
       </div>
-      <div>
+      <div className={classes.section}>
         {words.map((word) => (
-          <span>{word} </span>
+          <span>{`${word} `}</span>
         ))}
       </div>
+      <button id="cars" onClick={resetHandler}>Reset</button>
     </>
   );
 };
