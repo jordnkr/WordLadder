@@ -42,12 +42,3 @@
   font-weight: 600;
   }
 }
-
-@media (min-width: 500px) {
-  .letter {
-  width: 75px;
-  height: 75px;
-  font-size: 48px;
-  font-weight: 700;
-  }
-}

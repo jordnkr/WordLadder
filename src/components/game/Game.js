@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   generate,
   randomWord,
-  validWord
+  validWord,
 } from "../../word-ladder/wordladder.js";
 import classes from "./Game.module.css";
 import WordList from "./WordList";
@@ -123,7 +123,7 @@ const Game = () => {
   );
 
   const handleKeyButtonPress = (value) => {
-    if (value === "Backspace") {
+    if (value === "Del") {
       backspaceHandler();
     } else if (value === "Enter" && maxInputs) {
       enterHandler();

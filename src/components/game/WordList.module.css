@@ -1,4 +1,63 @@
 .wordlist {
-  max-height:425px;
-  overflow-y:auto;
+  max-height: 475px;
+  overflow-y: scroll;
+}
+
+@media (max-height: 750px) {
+  .wordlist {
+    max-height: 425px;
+  }
+}
+
+@media (max-height: 700px) {
+  .wordlist {
+    max-height: 375px;
+  }
+}
+
+@media (max-height: 650px) {
+  .wordlist {
+    max-height: 325px;
+  }
+}
+
+@media (max-height: 600px) {
+  .wordlist {
+    max-height: 275px;
+  }
+}
+
+@media (max-height: 550px) {
+  .wordlist {
+    max-height: 225px;
+  }
+}
+
+@media (max-height: 500px) {
+  .wordlist {
+    max-height: 175px;
+  }
+}
+
+@media (max-height: 450px) {
+  .wordlist {
+    max-height: 125px;
+  }
+}
+
+@media (max-height: 400px) {
+  .wordlist {
+    max-height: 75px;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.wordlist::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.wordlist {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

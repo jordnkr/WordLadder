@@ -1,13 +1,88 @@
 .button {
   font-size: 14px;
   background-color: white;
+  margin-left: 1px;
+  margin-right: 1px;
   color: black;
-  padding: 5px 10px;
+  padding: 15px 15px;
   border-radius: 5px;
   border: solid 1px black;
   cursor: pointer;
 }
 
-.button:hover {
+.button:active {
   background-color: rgb(227, 227, 227);
+}
+
+@media (max-width: 415px) {
+  .button {
+    padding: 15px 13px;
+  }
+}
+
+@media (max-width: 375px) {
+  .button {
+    padding: 15px 11px;
+  }
+}
+
+@media (max-width: 335px) {
+  .button {
+    padding: 15px 10px;
+  }
+}
+
+@media (max-width: 315px) {
+  .button {
+    padding: 17px 9px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 300px) {
+  .button {
+    padding: 17px 8px;
+  }
+}
+
+@media (max-width: 285px) {
+  .button {
+    padding: 18px 7px;
+  }
+}
+
+@media (max-width: 270px) {
+  .button {
+    padding: 18px 6px;
+  }
+}
+
+@media (max-width: 255px) {
+  .button {
+    padding: 19px 5px;
+  }
+}
+
+@media (max-width: 230px) {
+  .button {
+    padding: 19px 4px;
+  }
+}
+
+@media (max-width: 215px) {
+  .button {
+    padding: 19px 3px;
+  }
+}
+
+@media (max-width: 200px) {
+  .button {
+    padding: 20px 2px;
+  }
+}
+
+@media (max-width: 200px) {
+  .button {
+    padding: 20px 2px;
+  }
 }
