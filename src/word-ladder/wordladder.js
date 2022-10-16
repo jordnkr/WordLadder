@@ -461,7 +461,6 @@ export const wordlist = [
   "dais",
   "dale",
   "dame",
-  "damn",
   "damp",
   "dams",
   "dank",
