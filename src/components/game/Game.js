@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   generate,
   randomWord,
-  validWord,
+  validWord
 } from "../../word-ladder/wordladder.js";
 import classes from "./Game.module.css";
 import WordList from "./WordList";
