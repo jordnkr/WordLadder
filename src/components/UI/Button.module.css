@@ -8,6 +8,6 @@
   cursor: pointer;
 }
 
-.button:hover {
+.button:active {
   background-color: rgb(227, 227, 227);
 }
