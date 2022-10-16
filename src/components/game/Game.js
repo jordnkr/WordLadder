@@ -9,6 +9,7 @@ import classes from "./Game.module.css";
 import WordList from "./WordList";
 import Results from "./Results";
 import GameControls from "./GameControls.js";
+import Keyboard from "../keyboard/Keyboard";
 
 const Game = () => {
   const [resetToggle, setResetToggle] = useState(true);
@@ -40,7 +41,7 @@ const Game = () => {
       }
       setInputChars((prevChars) => {
         const newChars = [...prevChars];
-        newChars.push(e.key.toUpperCase());
+        newChars.push(e.toUpperCase());
         return newChars;
       });
     },
@@ -111,7 +112,7 @@ const Game = () => {
           (e.keyCode >= 97 && e.keyCode <= 122)) &&
         !maxInputs
       ) {
-        alphabetHandler(e);
+        alphabetHandler(e.key);
       } else if (e.keyCode === 8) {
         backspaceHandler();
       } else if (e.keyCode === 13 && maxInputs) {
@@ -120,6 +121,16 @@ const Game = () => {
     },
     [maxInputs, alphabetHandler, backspaceHandler, enterHandler]
   );
+
+  const handleKeyButtonPress = (value) => {
+    if (value === "Backspace") {
+      backspaceHandler();
+    } else if (value === "Enter" && maxInputs) {
+      enterHandler();
+    } else if (!maxInputs) {
+      alphabetHandler(value);
+    }
+  };
 
   useEffect(() => {
     if (!win) {
@@ -149,18 +160,21 @@ const Game = () => {
   }, [resetToggle]);
 
   return (
-    <div className={classes.game}>
-      <WordList
-        startingWords={startingWords}
-        enteredWords={enteredWords}
-        inputChars={inputChars}
-        win={win}
-      >
-        <div ref={dummyDiv}></div>
-      </WordList>
-      <GameControls win={win} onReset={resetHandler} />
-      {win && <Results message="You win!" />}
-    </div>
+    <>
+      <div className={classes.game}>
+        <WordList
+          startingWords={startingWords}
+          enteredWords={enteredWords}
+          inputChars={inputChars}
+          win={win}
+        >
+          <div ref={dummyDiv}></div>
+        </WordList>
+        <GameControls win={win} onReset={resetHandler} />
+        {win && <Results message="You win!" />}
+      </div>
+      <Keyboard onButtonPress={handleKeyButtonPress} />
+    </>
   );
 };
 
