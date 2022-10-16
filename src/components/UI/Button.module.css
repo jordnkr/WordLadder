@@ -11,3 +11,7 @@
 .button:active {
   background-color: rgb(227, 227, 227);
 }
+
+.gray {
+  background-color: rgb(219, 219, 219);
+}
