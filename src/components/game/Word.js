@@ -10,7 +10,7 @@ const Word = (props) => {
         const arr = [];
         for (let i = 0; i < props.word.length; i++) {
           arr.push(
-            <Letter value={props.word[i]} displayClass={props.displayClass} />
+            <Letter key={i} value={props.word[i]} displayClass={props.displayClass} />
           );
         }
         return arr;

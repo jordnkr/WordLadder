@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import {
   generate,
@@ -6,9 +6,9 @@ import {
   validWord,
 } from "../../word-ladder/wordladder.js";
 import classes from "./Game.module.css";
-import Word from "./Word.js";
-import Letter from "./Letter.js";
-import WordList from "./WordList.js";
+import WordList from "./WordList";
+import Results from "./Results";
+import GameControls from "./GameControls.js";
 
 const Game = () => {
   const [resetToggle, setResetToggle] = useState(true);
@@ -16,11 +16,11 @@ const Game = () => {
   const [inputChars, setInputChars] = useState([]);
   const [maxInputs, setMaxInputs] = useState(false);
   const [enteredWords, setEnteredWords] = useState([]);
-  const [currentWord, setCurrentWord] = useState("");
   const [startingWords, setStartingWords] = useState({
     firstWord: "",
     lastWord: "",
   });
+  const dummyDiv = useRef(null);
 
   // Determines amount of different chars between 2 strings (same size)
   const charDifference = (str1, str2) => {
@@ -61,6 +61,7 @@ const Game = () => {
       if (enteredWords.length > 0) {
         let prevWord = enteredWords[enteredWords.length - 1];
         setInputChars(prevWord.split(""));
+        setMaxInputs(true);
         setEnteredWords((prevWords) => {
           const newWords = [...prevWords];
           newWords.pop();
@@ -71,16 +72,20 @@ const Game = () => {
   }, [inputChars, maxInputs, enteredWords]);
 
   const enterHandler = useCallback(() => {
+    dummyDiv.current.scrollIntoView({ behavior: "smooth" });
     const newWord = inputChars.join("").toLowerCase();
+    const prevWord =
+      enteredWords.length > 0
+        ? enteredWords[enteredWords.length - 1]
+        : startingWords.firstWord;
 
     // IF NEW WORD IN WORD LIST, AND ALSO IS ONLY 1 CHAR OFF PREV-WORD
-    if (validWord(newWord) && charDifference(newWord, currentWord) <= 1) {
+    if (validWord(newWord) && charDifference(newWord, prevWord) === 1) {
       if (charDifference(newWord, startingWords.lastWord) <= 1) {
         setWin(true);
       } else {
         setInputChars([]);
         setMaxInputs(false);
-        setCurrentWord(newWord);
         setEnteredWords((prevWords) => {
           const newWords = [...prevWords];
           newWords.push(newWord);
@@ -88,7 +93,7 @@ const Game = () => {
         });
       }
     }
-  }, [currentWord, inputChars, startingWords]);
+  }, [enteredWords, inputChars, startingWords]);
 
   const resetHandler = useCallback((event) => {
     setWin(false);
@@ -117,7 +122,6 @@ const Game = () => {
   );
 
   useEffect(() => {
-    console.log(inputChars);
     if (!win) {
       document.addEventListener("keydown", handleKeyDown);
     }
@@ -131,8 +135,13 @@ const Game = () => {
     // generate() function doesn't always return a ladder
     while (ladder.length === 0) {
       ladder = generate(randomWord());
+      if (
+        ladder.length > 0 &&
+        charDifference(ladder[0], ladder[ladder.length - 1]) <= 1
+      ) {
+        ladder = []; // if ladder words are only 1 apart, keep searching for pair
+      }
     }
-    setCurrentWord(ladder[0]);
     setStartingWords({
       firstWord: ladder[0],
       lastWord: ladder[ladder.length - 1],
@@ -141,28 +150,16 @@ const Game = () => {
 
   return (
     <div className={classes.game}>
-      <WordList>
-        <Word word={startingWords.firstWord} displayClass="starter" />
-        {enteredWords.map((word) => (
-          <Word word={word} />
-        ))}
-        {(() => {
-          const arr = [];
-          for (let i = 0; i < 4; i++) {
-            arr.push(
-              <Letter
-                value={inputChars[i] ? inputChars[i] : ""}
-                displayClass={inputChars.length === i && "active"}
-              />
-            );
-          }
-          return arr;
-        })()}
-        <Word word={startingWords.lastWord} displayClass="starter" />
+      <WordList
+        startingWords={startingWords}
+        enteredWords={enteredWords}
+        inputChars={inputChars}
+        win={win}
+      >
+        <div ref={dummyDiv}></div>
       </WordList>
-      {!win && <button onClick={resetHandler}>Reset</button>}
-      {win && <button onClick={resetHandler}>Play Again</button>}
-      {win && <p>You win!</p>}
+      <GameControls win={win} onReset={resetHandler} />
+      {win && <Results message="You win!" />}
     </div>
   );
 };

@@ -19,3 +19,35 @@
 .starter {
   background-color: rgb(195, 195, 195);
 }
+
+.gg {
+  background-color: rgb(130, 203, 130);
+  border-color: rgb(130, 203, 130);
+}
+
+@media (max-width: 275px) {
+  .letter {
+  width: 40px;
+  height: 40px;
+  font-size: 28px;
+  font-weight: 600;
+  }
+}
+
+@media (max-width: 200px) {
+  .letter {
+  width: 30px;
+  height: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  }
+}
+
+@media (min-width: 500px) {
+  .letter {
+  width: 75px;
+  height: 75px;
+  font-size: 48px;
+  font-weight: 700;
+  }
+}
