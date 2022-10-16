@@ -127,6 +127,8 @@ const Game = () => {
       backspaceHandler();
     } else if (value === "Enter" && maxInputs) {
       enterHandler();
+    } else if (value === "Enter" && !maxInputs) {
+      return; // don't allow Enter without max inputs
     } else if (!maxInputs) {
       alphabetHandler(value);
     }
