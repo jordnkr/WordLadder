@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/word-ladder-react/static/css/main.ef1c7dae.css",
-    "main.js": "/word-ladder-react/static/js/main.08ba7cc2.js",
+    "main.css": "/word-ladder-react/static/css/main.6d644070.css",
+    "main.js": "/word-ladder-react/static/js/main.5b6964ea.js",
     "static/js/787.a618f78f.chunk.js": "/word-ladder-react/static/js/787.a618f78f.chunk.js",
     "index.html": "/word-ladder-react/index.html",
-    "main.ef1c7dae.css.map": "/word-ladder-react/static/css/main.ef1c7dae.css.map",
-    "main.08ba7cc2.js.map": "/word-ladder-react/static/js/main.08ba7cc2.js.map",
+    "main.6d644070.css.map": "/word-ladder-react/static/css/main.6d644070.css.map",
+    "main.5b6964ea.js.map": "/word-ladder-react/static/js/main.5b6964ea.js.map",
     "787.a618f78f.chunk.js.map": "/word-ladder-react/static/js/787.a618f78f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ef1c7dae.css",
-    "static/js/main.08ba7cc2.js"
+    "static/css/main.6d644070.css",
+    "static/js/main.5b6964ea.js"
   ]
 }
