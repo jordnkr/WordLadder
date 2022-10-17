@@ -5,49 +5,49 @@
 
 @media (max-height: 750px) {
   .wordlist {
-    max-height: 425px;
+    max-height: 400px;
   }
 }
 
 @media (max-height: 700px) {
   .wordlist {
-    max-height: 375px;
+    max-height: 350px;
   }
 }
 
 @media (max-height: 650px) {
   .wordlist {
-    max-height: 325px;
+    max-height: 300px;
   }
 }
 
 @media (max-height: 600px) {
   .wordlist {
-    max-height: 275px;
+    max-height: 250px;
   }
 }
 
 @media (max-height: 550px) {
   .wordlist {
-    max-height: 225px;
+    max-height: 200px;
   }
 }
 
 @media (max-height: 500px) {
   .wordlist {
-    max-height: 175px;
+    max-height: 150px;
   }
 }
 
 @media (max-height: 450px) {
   .wordlist {
-    max-height: 125px;
+    max-height: 100px;
   }
 }
 
 @media (max-height: 400px) {
   .wordlist {
-    max-height: 75px;
+    max-height: 50px;
   }
 }
 

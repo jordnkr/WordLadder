@@ -9,7 +9,7 @@ const KeyboardKey = (props) => {
     props.onButtonPress(text);
   }
 
-  return ( <button onClick={clickHandler} className={classes.button}>{props.value}</button> );
+  return ( <button onClick={clickHandler} className={`${classes.button} ${classes[props.color]}`}>{props.value}</button> );
 }
  
 export default KeyboardKey;

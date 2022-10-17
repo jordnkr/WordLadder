@@ -6,8 +6,16 @@ import classes from "./GameControls.module.css";
 const GameControls = (props) => {
   return (
     <div className={classes.buttons}>
-      {!props.win && <Button onClick={props.onReset} color="gray">Reset</Button>}
-      {props.win && <Button onClick={props.onReset} color="gray">Play Again</Button>}
+      {!props.win && (
+        <Button onClick={props.onReset} color="gray">
+          New Words
+        </Button>
+      )}
+      {props.win && (
+        <Button onClick={props.onReset} color="gray">
+          Play Again
+        </Button>
+      )}
     </div>
   );
 };
