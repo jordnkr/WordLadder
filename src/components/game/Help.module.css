@@ -1,0 +1,11 @@
+.modalContent {
+  text-align: center;
+}
+
+.instructions {
+  margin-bottom: 30px;
+}
+
+.instructions > p {
+  margin-top: 20px;
+}

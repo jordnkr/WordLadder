@@ -1,4 +1,4 @@
-.title {
+.bar {
   width: 100%;
   text-align: center;
   height: 50px;
@@ -8,4 +8,15 @@
   z-index: 1;
   background-color: white;
   position: fixed;
+}
+
+.title {
+  margin: 0;
+}
+
+.helpIcon {
+  color:black;
+  position: fixed;
+  margin-left: 10px;
+  cursor: pointer;
 }
