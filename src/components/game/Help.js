@@ -17,7 +17,7 @@ const Help = (props) => {
         <h2 className={classes.title}>How To Play</h2>
         <div className={classes.instructions}>
           <p>Connect the first and last words.</p>
-          <p>With each new entered word, only 1 letter at a time can change.</p>
+          <p>Only 1 letter at a time can change.</p>
           <p>That's it!</p>
         </div>
         <Button onClick={props.onClose} ref={btnRef}>
