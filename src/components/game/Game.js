@@ -123,14 +123,16 @@ const Game = () => {
   );
 
   const handleKeyButtonPress = (value) => {
-    if (value === "Del") {
-      backspaceHandler();
-    } else if (value === "Enter" && maxInputs) {
-      enterHandler();
-    } else if (value === "Enter" && !maxInputs) {
-      return; // don't allow Enter without max inputs
-    } else if (!maxInputs) {
-      alphabetHandler(value);
+    if (!win) {
+      if (value === "Del") {
+        backspaceHandler();
+      } else if (value === "Enter" && maxInputs) {
+        enterHandler();
+      } else if (value === "Enter" && !maxInputs) {
+        return; // don't allow Enter without max inputs
+      } else if (!maxInputs) {
+        alphabetHandler(value);
+      }
     }
   };
 
