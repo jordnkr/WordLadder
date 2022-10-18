@@ -10,10 +10,12 @@ import WordList from "./WordList";
 import Results from "./Results";
 import GameControls from "./GameControls.js";
 import Keyboard from "../keyboard/Keyboard";
+import Error from "./Error.js";
 
 const Game = () => {
   const [resetToggle, setResetToggle] = useState(true);
   const [win, setWin] = useState(false);
+  const [error, setError] = useState("");
   const [inputChars, setInputChars] = useState([]);
   const [maxInputs, setMaxInputs] = useState(false);
   const [enteredWords, setEnteredWords] = useState([]);
@@ -49,6 +51,7 @@ const Game = () => {
   );
 
   const backspaceHandler = useCallback(() => {
+    setError("");
     if (inputChars.length > 0) {
       setInputChars((prevChars) => {
         const newChars = [...prevChars];
@@ -93,11 +96,14 @@ const Game = () => {
           return newWords;
         });
       }
+    } else {
+      setError("Invalid word.")
     }
   }, [enteredWords, inputChars, startingWords]);
 
   const resetHandler = useCallback((event) => {
     setWin(false);
+    setError("");
     setResetToggle((prevState) => !prevState);
     setInputChars([]);
     setEnteredWords([]);
@@ -174,6 +180,7 @@ const Game = () => {
         >
           <div ref={dummyDiv}></div>
         </WordList>
+        {error && <Error message={error} />}
         <GameControls win={win} onReset={resetHandler} />
         {win && <Results message="You win!" />}
       </div>
