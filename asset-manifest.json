@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/WordLadder/static/css/main.364e836d.css",
-    "main.js": "/WordLadder/static/js/main.c83078f6.js",
+    "main.js": "/WordLadder/static/js/main.74e7626d.js",
     "static/js/787.00dcc25f.chunk.js": "/WordLadder/static/js/787.00dcc25f.chunk.js",
     "index.html": "/WordLadder/index.html",
     "main.364e836d.css.map": "/WordLadder/static/css/main.364e836d.css.map",
-    "main.c83078f6.js.map": "/WordLadder/static/js/main.c83078f6.js.map",
+    "main.74e7626d.js.map": "/WordLadder/static/js/main.74e7626d.js.map",
     "787.00dcc25f.chunk.js.map": "/WordLadder/static/js/787.00dcc25f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.364e836d.css",
-    "static/js/main.c83078f6.js"
+    "static/js/main.74e7626d.js"
   ]
 }
