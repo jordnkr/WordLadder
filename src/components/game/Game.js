@@ -97,7 +97,7 @@ const Game = () => {
         });
       }
     } else {
-      setError("Invalid word.")
+      setError("Invalid word.");
     }
   }, [enteredWords, inputChars, startingWords]);
 
@@ -113,11 +113,8 @@ const Game = () => {
 
   const handleKeyDown = useCallback(
     (e) => {
-      if (
-        ((e.keyCode >= 65 && e.keyCode <= 90) ||
-          (e.keyCode >= 97 && e.keyCode <= 122)) &&
-        !maxInputs
-      ) {
+      console.log(e);
+      if (e.keyCode >= 65 && e.keyCode <= 90 && !maxInputs) {
         alphabetHandler(e.key);
       } else if (e.keyCode === 8) {
         backspaceHandler();
